@@ -1,0 +1,27 @@
+{
+  "name": "weather",
+  "main": "index.js",
+  "version": "0.0.1",
+  "authors": [
+    "Qazzian <Qazzian@gmail.com>"
+  ],
+  "description": "Simple weather reporting tool",
+  "keywords": [
+    "weather",
+    "UK"
+  ],
+  "license": "MIT",
+  "homepage": "www.qazzian.com/weather",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.1.1"
+  }
+}
