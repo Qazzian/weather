@@ -7,41 +7,103 @@
 
     <title>Uk Weather - By Qazzian</title>
 
-    <link rel="stylesheet" href="/css/manifest.css"/>
+    <link rel="stylesheet" href="css/manifest.css"/>
 
 </head>
 <body>
-<header>
+<header class="container">
     <h1>UK Weather</h1>
     <nav></nav>
 </header>
 
-<main>
-<div class="cityPickerPlaceholder"></div>
+<main class="container">
+<section>
+    <form class="cityPicker" action="/" method="get">
+        <p>
+            <label for="cityPickerSearch">Start by searching for a town or City: </label>
+            <input id="cityPickerSearch" name="citySearch" type="text" placeholder="City Name"/>
+            <input type="submit" value="Search">
+        </p>
+    </form>
+</section>
+
+<section class="cityListPlaceholder"></section>
+
 <div class="weatherResultsPlaceholder"></div>
 
 </main>
 
-<footer>
-    Copyright Qazzian.
-</footer>
+<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/lib/mustache.js"></script>
 
-<script type="text/javascript" src="/js/lib/jquery.min.js"></script>
-<script type="text/javascript" src="/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/OpenWeatherMap.js"></script>
+<script type="text/javascript" src="js/CityView.js"></script>
+<script type="text/javascript" src="js/CityListView.js"></script>
+<script type="text/javascript" src="js/pageController.js"></script>
 
-<script id="cityPickerTemplate" type="text/html">
-    <section class="cityPicker">
-        <form action="/" method="get">
-            <p>
-                <label for="cityPickerSearch">Start by searching for a town or City: </label>
-                <input name="citySearch" type="input" placeholder="City Name"/>
-                <input type="submit">
-            </p>
-        </form>
-    </section>
+<script id="citySelector" type="text/html">
+    {{#cities.length}}
+      <ul class="list-unstyled">
+          {{#cities}}
+            <li><a href="?id={{id}}" data-city-id="{{id}}">{{name}}</a></li>
+          {{/cities}}
+      </ul>
+    {{/cities.length}}
 </script>
-<script id="weatherDisplay" type="text/html"></script>
+
+<script id="weatherDisplay" type="text/html">
+    <section class="cityResults">
+        <h2 class="cityName">{{cityName}}
+            <img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt=""/>
+        </h2>
+        
+        <table class="table"><thead><tr>
+            <th>Temp</th>
+            <th>Temp min</th>
+            <th>Temp max</th>
+        </tr></thead>
+        <tbody><tr>
+            <td>{{main.temp}}</td>
+            <td>{{main.temp_min}}</td>
+            <td>{{main.temp_max}}</td>
+        </tr></tbody>
+        </table>
+
+        <table class="table">
+            <tbody>
+            {{#wind}}
+            <tr>
+                <th>Wind</th>
+                <td>
+                    {{wind.speed}} mph
+                    <span class="windDirection" style="-webkit-transform: rotate({{wind.deg}}deg)">
+                        <img src="arrow-up.png" alt="Wind direction: {{wind.deg}} degrees" title="Wind direction" width="20"/>
+                    </span>
+                </td>
+            </tr>{{/wind}}
+            {{#clouds}}<tr>
+                <th>Cloud cover</th>
+                <td>
+                    {{clouds}}%
+                </td>
+            </tr>{{/clouds}}<tr>
+                <th>Pressure</th>
+                <td>
+                    {{main.pressure}} hPa
+                </td>
+            </tr><tr>
+                <th>Humidity</th>
+                <td>
+                    {{main.humidity}}%
+                </td>
+            </tr></tbody>
+        </table>
+
+    </section>
+
+
+</script>
 
 </body>
-</html>
 </html>
