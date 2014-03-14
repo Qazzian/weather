@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Uk Weather - By Qazzian</title>
 
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/manifest.css"/>
 
 </head>
 <body>
+<header>
+    <h1>UK Weather</h1>
+    <nav></nav>
+</header>
 
-<h1>UK Weather</h1>
+<main>
+<div class="cityPickerPlaceholder"></div>
+<div class="weatherResultsPlaceholder"></div>
 
+</main>
 
+<footer>
+    Copyright Qazzian.
+</footer>
+
+<script type="text/javascript" src="/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="/js/lib/bootstrap.min.js"></script>
+
+<script id="cityPickerTemplate" type="text/html">
+    <section class="cityPicker">
+        <form action="/" method="get">
+            <p>
+                <label for="cityPickerSearch">Start by searching for a town or City: </label>
+                <input name="citySearch" type="input" placeholder="City Name"/>
+                <input type="submit">
+            </p>
+        </form>
+    </section>
+</script>
+<script id="weatherDisplay" type="text/html"></script>
 
 </body>
+</html>
 </html>
